@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_operations.c                               :+:      :+:    :+:   */
+/*   fractol_operations_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:31:43 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:46 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:45:12 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 double	ft_scale(double v, double mn_n, double mx_n, double max_o)
 {

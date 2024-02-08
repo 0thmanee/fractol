@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:10 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:00 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:44:55 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	error_msg(void)
 {
@@ -38,6 +38,14 @@ int	key_handler(int keysym, t_fractal *fractal)
 		fractal->iters += 10;
 	else if (keysym == 78)
 		fractal->iters -= 10;
+	else if (keysym == 123)
+		fractal->shift_x -= 0.5;
+	else if (keysym == 124)
+		fractal->shift_x += 0.5;
+	else if (keysym == 125)
+		fractal->shift_y -= 0.5;
+	else if (keysym == 126)
+		fractal->shift_y += 0.5;
 	else
 		return (0);
 	render_img(fractal);

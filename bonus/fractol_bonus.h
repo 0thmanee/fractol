@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   fractol_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:14 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:21 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:45:06 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FRACTOL_BONUS_H
+# define FRACTOL_BONUS_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -41,6 +41,8 @@ typedef struct s_fractal
 	int			iters;
 	t_image		img;
 	double		zoom;
+	double		shift_x;
+	double		shift_y;
 	double		julia_x;
 	double		julia_y;
 }	t_fractal;

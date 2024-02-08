@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_render.c                                   :+:      :+:    :+:   */
+/*   fractol_render_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:34:30 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:48 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:45:15 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 void	fractol_init(t_fractal *frac)
 {
@@ -29,6 +29,8 @@ void	fractol_init(t_fractal *frac)
 		return ;
 	frac->iters = 240;
 	frac->zoom = 1.0;
+	frac->shift_x = 0.0;
+	frac->shift_y = 0.0;
 }
 
 void	put_pixel(int x, int y, int color, t_image *img)
@@ -61,8 +63,8 @@ void	render_pixel(double x, double y, t_fractal *frac)
 	int			color;
 
 	i = 0;
-	z.re = ft_scale(x, -2, 2, HEIGHT) * frac->zoom;
-	z.im = ft_scale(y, 2, -2, HEIGHT) * frac->zoom;
+	z.re = (ft_scale(x, -2, 2, HEIGHT) + frac->shift_x) * frac->zoom;
+	z.im = (ft_scale(y, 2, -2, HEIGHT) + frac->shift_y) * frac->zoom;
 	type_config(&z, &c, frac);
 	while (i < frac->iters)
 	{

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_tools.c                                    :+:      :+:    :+:   */
+/*   fractol_tools_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:05 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:30:45 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:45:18 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_bonus.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
