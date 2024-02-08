@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:10 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:00 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:31:49 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	close_win(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx_ptr, fractal->img.img_ptr);
 	mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
-	exit(0);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 int	key_handler(int keysym, t_fractal *fractal)
@@ -81,6 +80,6 @@ int	main(int ac, char *av[])
 		mlx_loop(fractal.mlx_ptr);
 	}
 	else
-		error_msg();
+		(error_msg(), exit(EXIT_FAILURE));
 	exit(EXIT_SUCCESS);
 }

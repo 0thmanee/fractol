@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:34:30 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:48 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/08 22:32:32 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	fractol_init(t_fractal *frac)
 {
 	frac->mlx_ptr = mlx_init();
 	if (!frac->mlx_ptr)
-		return ;
+		exit(EXIT_FAILURE);
 	frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, frac->name);
 	if (!frac->win_ptr)
-		return ;
+		exit(EXIT_FAILURE);
 	frac->img.img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
 	if (!frac->img.img_ptr)
-		return ;
+		exit(EXIT_FAILURE);
 	frac->img.pxls_ptr = mlx_get_data_addr(frac->img.img_ptr, &frac->img.bpp,
 			&frac->img.line_length, &frac->img.endian);
 	if (!frac->img.pxls_ptr)
-		return ;
+		exit(EXIT_FAILURE);
 	frac->iters = 240;
 	frac->zoom = 1.0;
 }
