@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:14 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/09 00:44:44 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 06:06:20 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ double		ft_scale(double v, double mn_n, double mx_n, double max_o);
 t_complex	sum_z(t_complex z1, t_complex z2);
 t_complex	pow_z(t_complex z);
 t_complex	mod_z(t_complex z);
+t_complex	pow_z_2(t_complex z);
 
 #endif

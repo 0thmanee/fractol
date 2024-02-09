@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:31:43 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/09 00:46:14 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 06:06:08 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ t_complex	pow_z(t_complex z)
 
 	res.re = (z.re * z.re) - (z.im * z.im);
 	res.im = 2 * z.re * z.im;
+	return (res);
+}
+
+t_complex	pow_z_2(t_complex z)
+{
+	t_complex	res;
+
+	res.re = (z.re * z.re) - (z.im * z.im);
+	res.im = -2 * z.re * z.im;
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:34:30 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/09 02:13:40 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 06:06:29 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	type_config(t_complex *z, t_complex *c, t_fractal *frac)
 void	render_helper(t_fractal *frac, t_complex *z, t_complex *c)
 {
 	if (!ft_strcmp(frac->name, "burning"))
-		*z = (sum_z(pow_z(mod_z(*z)), *c));
+		*z = (sum_z(pow_z_2(mod_z(*z)), *c));
 	else
 		*z = sum_z(pow_z(*z), *c);
 }
