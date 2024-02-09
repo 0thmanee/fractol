@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:14 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 17:48:21 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:41:03 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,20 @@ typedef struct s_fractal
 	double		zoom;
 	double		julia_x;
 	double		julia_y;
+	int			red_mul;
+	int			green_mul;
+	int			blue_mul;
 }	t_fractal;
 
 # define WIDTH 800
 # define HEIGHT 800
 
-// Colors
-
-# define BLACK 0x000000
-# define WHITE 0xFFFFFF
-
-# define GOLD_1 0xFFCC00
-# define GOLD_2 0xFFD700
-
-# define PINK_1 0xFF1493
-# define PINK_2 0xFF69B4
-
-# define TEAL_1 0x008080
-# define TEAL_2 0x008B8B
-
-# define ORANGE_1 0xFFA500
-# define ORANGE_2 0xFF8C00
-
-# define BLUE_1 0xFFA07A
-# define BLUE_2 0x4682B4
-
-# define GREEN_1 0x20B2AA
-# define GREEN_2 0xFF6347
-
 int			ft_strcmp(const char *s1, const char *s2);
 double		ft_atoi_double(char *s);
 int			invalid_coords(char *coord);
+int			close_win(t_fractal *fractal);
+int			key_handler(int keysym, t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 void		fractol_init(t_fractal *frac);
 void		put_pixel(int x, int y, int color, t_image *img);
 void		render_pixel(double x, double y, t_fractal *frac);

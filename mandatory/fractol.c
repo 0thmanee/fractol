@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:28:10 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 22:31:49 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 02:14:07 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,42 +19,46 @@ void	error_msg(void)
 	> ./fractol julia < re > < im >\n\n", 76);
 }
 
-int	close_win(t_fractal *fractal)
+void	fractol_init(t_fractal *frac)
 {
-	mlx_destroy_image(fractal->mlx_ptr, fractal->img.img_ptr);
-	mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
-	exit(EXIT_SUCCESS);
+	frac->mlx_ptr = mlx_init();
+	if (!frac->mlx_ptr)
+		exit(EXIT_FAILURE);
+	frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, frac->name);
+	if (!frac->win_ptr)
+		exit(EXIT_FAILURE);
+	frac->img.img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
+	if (!frac->img.img_ptr)
+		exit(EXIT_FAILURE);
+	frac->img.pxls_ptr = mlx_get_data_addr(frac->img.img_ptr, &frac->img.bpp,
+			&frac->img.line_length, &frac->img.endian);
+	if (!frac->img.pxls_ptr)
+		exit(EXIT_FAILURE);
+	frac->iters = 240;
+	frac->zoom = 1.0;
+	frac->red_mul = 5;
+	frac->green_mul = 7;
+	frac->blue_mul = 9;
 }
 
-int	key_handler(int keysym, t_fractal *fractal)
+void	render_img(t_fractal *frac)
 {
-	if (keysym == 53)
+	double	i;
+	double	j;
+
+	i = 0;
+	while (i < HEIGHT)
 	{
-		close_win(fractal);
-		exit(0);
+		j = 0;
+		while (j < WIDTH)
+		{
+			render_pixel(i, j, frac);
+			j++;
+		}
+		i++;
 	}
-	else if (keysym == 69)
-		fractal->iters += 10;
-	else if (keysym == 78)
-		fractal->iters -= 10;
-	else
-		return (0);
-	render_img(fractal);
-	return (0);
-}
-
-int	mouse_handler(int button, int x, int y, t_fractal *fractal)
-{
-	(void)x;
-	(void)y;
-	if (button == 4)
-		fractal->zoom *= 1.05;
-	else if (button == 5)
-		fractal->zoom *= 0.95;
-	else
-		return (0);
-	render_img(fractal);
-	return (0);
+	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr,
+		frac->img.img_ptr, 0, 0);
 }
 
 int	main(int ac, char *av[])

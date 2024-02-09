@@ -4,12 +4,12 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 RM = rm -f
 
 NAME = fractol
-CFILES = mandatory/fractol.c mandatory/fractol_operations.c mandatory/fractol_render.c mandatory/fractol_tools.c
+CFILES = mandatory/fractol.c mandatory/fractol_hook.c mandatory/fractol_operations.c mandatory/fractol_render.c mandatory/fractol_tools.c
 OFILES = $(CFILES:.c=.o)
 INCLUDES = mandatory/fractol.h
 
 NAME_BONUS = fractol_bonus
-CFILES_BONUS = bonus/fractol_bonus.c bonus/fractol_operations_bonus.c bonus/fractol_render_bonus.c bonus/fractol_tools_bonus.c
+CFILES_BONUS = bonus/fractol_bonus.c bonus/fractol_hook_bonus.c bonus/fractol_operations_bonus.c bonus/fractol_render_bonus.c bonus/fractol_tools_bonus.c
 OFILES_BONUS = $(CFILES_BONUS:.c=.o)
 INCLUDES_BONUS = bonus/fractol_bonus.h
 

@@ -6,31 +6,22 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 23:34:30 by obouchta          #+#    #+#             */
-/*   Updated: 2024/02/08 22:32:49 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/02/09 02:13:40 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_bonus.h"
 
-void	fractol_init(t_fractal *frac)
+int	create_color(int iter, t_fractal *frac)
 {
-	frac->mlx_ptr = mlx_init();
-	if (!frac->mlx_ptr)
-		exit(EXIT_FAILURE);
-	frac->win_ptr = mlx_new_window(frac->mlx_ptr, WIDTH, HEIGHT, frac->name);
-	if (!frac->win_ptr)
-		exit(EXIT_FAILURE);
-	frac->img.img_ptr = mlx_new_image(frac->mlx_ptr, WIDTH, HEIGHT);
-	if (!frac->img.img_ptr)
-		exit(EXIT_FAILURE);
-	frac->img.pxls_ptr = mlx_get_data_addr(frac->img.img_ptr, &frac->img.bpp,
-			&frac->img.line_length, &frac->img.endian);
-	if (!frac->img.pxls_ptr)
-		exit(EXIT_FAILURE);
-	frac->iters = 240;
-	frac->zoom = 1.0;
-	frac->shift_x = 0.0;
-	frac->shift_y = 0.0;
+	int	red;
+	int	green;
+	int	blue;
+
+	red = (iter * frac->red_mul) % 256;
+	green = (iter * frac->green_mul) % 256;
+	blue = (iter * frac->blue_mul) % 256;
+	return ((red << 16) | (green << 8) | blue);
 }
 
 void	put_pixel(int x, int y, int color, t_image *img)
@@ -43,7 +34,8 @@ void	put_pixel(int x, int y, int color, t_image *img)
 
 void	type_config(t_complex *z, t_complex *c, t_fractal *frac)
 {
-	if (!ft_strcmp(frac->name, "mandelbrot"))
+	if (!ft_strcmp(frac->name, "mandelbrot")
+		|| !ft_strcmp(frac->name, "burning"))
 	{
 		c->re = z->re;
 		c->im = z->im;
@@ -53,6 +45,14 @@ void	type_config(t_complex *z, t_complex *c, t_fractal *frac)
 		c->re = frac->julia_x;
 		c->im = frac->julia_y;
 	}
+}
+
+void	render_helper(t_fractal *frac, t_complex *z, t_complex *c)
+{
+	if (!ft_strcmp(frac->name, "burning"))
+		*z = (sum_z(pow_z(mod_z(*z)), *c));
+	else
+		*z = sum_z(pow_z(*z), *c);
 }
 
 void	render_pixel(double x, double y, t_fractal *frac)
@@ -68,37 +68,17 @@ void	render_pixel(double x, double y, t_fractal *frac)
 	type_config(&z, &c, frac);
 	while (i < frac->iters)
 	{
-		z = sum_z(pow_z(z), c);
+		render_helper(frac, &z, &c);
 		if ((z.re * z.re) + (z.im * z.im) > 4)
 		{
-			color = ft_scale(i, BLACK, WHITE, frac->iters);
+			color = create_color(i, frac);
 			put_pixel(x, y, color, &frac->img);
 			return ;
 		}
 		i++;
 	}
-	color = WHITE;
+	color = 0;
 	if (!ft_strcmp(frac->name, "julia"))
-		color = ft_scale(i, GOLD_1, GOLD_2, frac->iters);
+		color = create_color(i, frac);
 	put_pixel(x, y, color, &frac->img);
-}
-
-void	render_img(t_fractal *frac)
-{
-	double	i;
-	double	j;
-
-	i = 0;
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			render_pixel(i, j, frac);
-			j++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(frac->mlx_ptr, frac->win_ptr,
-		frac->img.img_ptr, 0, 0);
 }
